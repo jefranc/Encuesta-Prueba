@@ -65,7 +65,7 @@ class EncuestaController extends Controller
             }
         });
 
-        return redirect('/')->with('success', '¡Encuesta enviada correctamente! Gracias por su participación.');
+        return redirect('/estadisticas')->with('success', '¡Encuesta enviada correctamente! Gracias por su participación.');
     }
 
     public function estadisticas()
@@ -79,7 +79,6 @@ class EncuestaController extends Controller
             $totalEncuestados = RespuestaEncuesta::where('codigo_encuesta', $encuesta->codigo_encuesta)->count();
 
             $sumaCalifica = RespuestaPregunta::where('codigo_encuesta', $encuesta->codigo_encuesta)->sum('califica');
-            $totalRespuestas = RespuestaPregunta::where('codigo_encuesta', $encuesta->codigo_encuesta)->count();
 
             $promedio = $totalEncuestados > 0 ? $sumaCalifica / $totalEncuestados : 0;
 
